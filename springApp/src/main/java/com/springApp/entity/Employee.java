@@ -9,13 +9,13 @@ public class Employee {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long Id;
 
-    @Column(name = "name" )
+    @Column(name = "name" ,nullable = false )
     private String name;
 
-    @Column(name = "email")
+    @Column(name = "email" , nullable = false , unique = true)
     private String email;
 
-    @Column(name = "mobile" )
+    @Column(name = "mobile" ,nullable = false , unique = true)
     private String mobile;
 
     public Long getId() {

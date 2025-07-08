@@ -28,4 +28,9 @@ public class EmployeeRoutes {
 	public String loadUpdateRegistration() {
 		return "updateRegistration";
 	}
+	
+	@RequestMapping("/viewRegistration")
+	public String viewRegistration() {
+		return "viewRegistration";
+	}
 }

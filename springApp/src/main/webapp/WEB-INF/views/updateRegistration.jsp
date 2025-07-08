@@ -10,13 +10,13 @@
 </head>
 <body>
 	<h1>Registration page....</h1>
-	<form action="saveReg" action="post">
-		Name : <input type="text" name="name" /> email : <input type="text"
-			name="email" /> mobile : <input type="text" name="mobile" /> City :
-		<input type="text" name="city" /> state : <input type="text"
-			name="state" /> PinCode : <input type="text" name="pincode" />
-		AddressLine : <input type="text" name="AddressLine" /> <input
-			type="submit" value="update" />
+	<form action="updateEmployeeDeteilsById" action="post">
+	
+	     <input type="hidden" name="id" value="${employees.id}"/>
+		Name : <input type="text" name="name" value="${employees.name}"/>
+		 email : <input type="text"	name="email" value="${employees.email} " /> 
+		 mobile : <input type="text" name="mobile" value="${employees.mobile }"/>
+		 <input	type="submit" value="update" />
 
 	</form>
 </body>

@@ -7,6 +7,6 @@
 </head>
 <body>
 	<a href="view">Register Employee</a>
-	<a href="listRegistrations">List Employees</a>
+	<a href="getAllEmployee">List Employees</a>
 </body>
 </html>
