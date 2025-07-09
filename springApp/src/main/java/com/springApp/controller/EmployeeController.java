@@ -1,5 +1,6 @@
 package com.springApp.controller;
 
+import com.springApp.emailService.EmailService;
 import com.springApp.entity.Employee;
 import com.springApp.payload.EmployeePayload;
 import com.springApp.service.EmployeeService;
@@ -21,11 +22,15 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
 
+	@Autowired
+	private EmailService emailService;
+
 	// Handler Method -http://localhost:8080/view
 
 	@RequestMapping("/saveReg")
 	public String getRegistrationData(@ModelAttribute EmployeePayload employeePayload, Model model) {
 		employeeService.saveRegistration(employeePayload);
+		this.emailService.emailSender(employeePayload.getEmail() , "testing" , "email received..");
 		return "registration";
 
 	}
