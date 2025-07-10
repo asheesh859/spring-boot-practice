@@ -1,21 +1,21 @@
 package com.springApp.payload;
 
 public class EmployeePayload {
-    private Long Id;
+    private Long id;
     private String name;
     private String email;
     private String mobile;
     private String city;
     private String state;
-    private String AddressLine;
+    private String addressLine;
     private Long pincode;
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getName() {
@@ -59,11 +59,11 @@ public class EmployeePayload {
     }
 
     public String getAddressLine() {
-        return AddressLine;
+        return addressLine;
     }
 
     public void setAddressLine(String addressLine) {
-        AddressLine = addressLine;
+        this.addressLine = addressLine;
     }
 
     public Long getPincode() {

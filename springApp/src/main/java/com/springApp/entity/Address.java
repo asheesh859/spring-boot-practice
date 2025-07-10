@@ -7,20 +7,20 @@ import jakarta.persistence.*;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
     private String city;
     private String state;
     private Long pincode;
 
     @Column(name = "address_line")
-    private String AddressLine;
+    private String addressLine;
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getCity() {
@@ -48,11 +48,11 @@ public class Address {
     }
 
     public String getAddressLine() {
-        return AddressLine;
+        return addressLine;
     }
 
     public void setAddressLine(String addressLine) {
-        AddressLine = addressLine;
+        this.addressLine = addressLine;
     }
 
 
