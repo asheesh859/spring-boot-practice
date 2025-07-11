@@ -43,21 +43,21 @@ public class EmployeeController {
 
 	}
 
-	@RequestMapping("/getAllEmployee")
-	public String viewRegistration(ModelMap model) {
-		List<Employee> employee = employeeService.getAllReistration();
-		model.addAttribute("employees", employee);
-		return "viewRegistration";
-	}
+//	@RequestMapping("/getAllEmployee")
+//	public String viewRegistration(ModelMap model) {
+//		List<Employee> employee = employeeService.getAllReistration();
+//		model.addAttribute("employees", employee);
+//		return "viewRegistration";
+//	}
 
-	@RequestMapping("/deleteEmpolyee")
-	public String deleteEmployeeRegistration(@RequestParam long id, ModelMap model) {
-		employeeService.deleteEmployeeById(id);
-
-		List<Employee> allReistration = employeeService.getAllReistration();
-		model.addAttribute("employees", allReistration);
-		return "viewRegistration";
-	}
+//	@RequestMapping("/deleteEmpolyee")
+//	public String deleteEmployeeRegistration(@RequestParam long id, ModelMap model) {
+//		employeeService.deleteEmployeeById(id);
+//
+//		List<Employee> allReistration = employeeService.getAllReistration();
+//		model.addAttribute("employees", allReistration);
+//		return "viewRegistration";
+//	}
 
 //	@RequestMapping("/updateEmployeeDeteilsById")
 //	public String updateRegistrationById(@ModelAttribute EmployeePayload employeePayLoad , Model model ) {
@@ -67,17 +67,17 @@ public class EmployeeController {
 //		return "viewRegistration";
 //	}
 
-	@RequestMapping("/updateEmployeeDeteilsById")
-	public String updateRegistrationById(ModelMap model , @RequestParam long id , @RequestParam String name , @RequestParam String email , @RequestParam String mobile) {
-		System.out.print(id);
-
-
-		int Status = employeeService.updateRegisterById(id, name, email, mobile);
-		System.out.println(Status);
-		List<Employee> allReistration = employeeService.getAllReistration();
-		model.addAttribute("employees",allReistration);
-		return "viewRegistration";
-	}
+//	@RequestMapping("/updateEmployeeDeteilsById")
+//	public String updateRegistrationById(ModelMap model , @RequestParam long id , @RequestParam String name , @RequestParam String email , @RequestParam String mobile) {
+//		System.out.print(id);
+//
+//
+//		int Status = employeeService.updateRegisterById(id, name, email, mobile);
+//		System.out.println(Status);
+//		List<Employee> allReistration = employeeService.getAllReistration();
+//		model.addAttribute("employees",allReistration);
+//		return "viewRegistration";
+//	}
 	
 	
 	@RequestMapping("/getRegisterById")

@@ -6,6 +6,7 @@ import com.springApp.payload.EmployeePayload;
 import com.springApp.repository.AddressRepository;
 import com.springApp.repository.EmployeeRepository;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,19 +32,37 @@ public class EmployeeService {
 
 		EmployeePayload employeePayLoad = new EmployeePayload();
 
-		BeanUtils.copyProperties(employeeSave,employeePayload);
+		BeanUtils.copyProperties(employeeSave,employeePayLoad);
 		BeanUtils.copyProperties(addressSave , employeePayLoad);
 
 		return employeePayLoad;
 	}
 
-	public List<Employee> getAllReistration() {
-		List<Employee> employee = employeeRepository.findAll();
+	public Employee getAllReistration() {
+
+		Employee employee = new Employee();
+		List<Employee> employees = employeeRepository.findAll();
+		for(Employee emp : employees){
+			employee.setId(emp.getId());
+			employee.setName(emp.getName());
+			employee.setEmail(emp.getEmail());
+			employee.setMobile(emp.getMobile());
+
+		}
 		return employee;
+
 	}
 
-	public void deleteEmployeeById(long id) {
+	public Employee deleteEmployeeById(long id) {
+		Employee employeeResult = null;
+		Optional<Employee> employee = employeeRepository.findById(id);
+		if(employee.isPresent()){
+			employeeResult = employee.get();
+		}
 		employeeRepository.deleteById(id);
+		return employeeResult;
+
+
 	}
 
 //	public void updateRegistrationById(EmployeePayload employeePayload) {
