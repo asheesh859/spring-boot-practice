@@ -73,13 +73,20 @@ public class EmployeeControllerApi {
 
     @DeleteMapping("/deleteEmployee/{id}")
     public ResponseEntity<ApiResponse<Employee>> deleteEmployeeById(@PathVariable long id){
-        Employee employee = employeeService.deleteEmployeeById(id);
         ApiResponse<Employee> response = new ApiResponse<>();
-        response.setMessage("this employee has been deleted");
-        response.setStatusCode(200);
-        response.setData(employee);
-        ResponseEntity<ApiResponse<Employee>> responseResponseEntity = new ResponseEntity<>(response , HttpStatus.OK);
+        Employee employee = employeeService.deleteEmployeeById(id);
+        if(employee!=null){
+            response.setMessage("this employee has been deleted");
+            response.setStatusCode(200);
+            response.setData(employee);
+            ResponseEntity<ApiResponse<Employee>> responseResponseEntity = new ResponseEntity<>(response , HttpStatus.OK);
+            return responseResponseEntity;
+        }
+        response.setMessage("Id does not exist in database");
+        response.setStatusCode(404);
+        ResponseEntity<ApiResponse<Employee>> responseResponseEntity = new ResponseEntity<>(response , HttpStatus.NOT_FOUND);
         return responseResponseEntity;
+
     }
 
 
