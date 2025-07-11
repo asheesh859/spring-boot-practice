@@ -74,8 +74,11 @@ public class EmployeeService {
 
 	public Employee getREgistrationById(long id) {
 		Optional<Employee> employee = employeeRepository.findById(id);
-		return employee.get();
-		
+		if(employee.isPresent()){
+			return employee.get();
+		}
+		return null;
+
 	}
 
 }
