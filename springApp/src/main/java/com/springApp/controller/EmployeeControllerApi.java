@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/api/emp")
@@ -19,13 +21,8 @@ public class EmployeeControllerApi {
 
     @PostMapping("/add")
     public ResponseEntity<ApiResponse<EmployeePayload>> registerEmployee(@RequestBody EmployeePayload employeePayload){
+
         EmployeePayload saveEmployees = employeeService.saveRegistration(employeePayload);
-
-        System.out.println(saveEmployees);
-        System.out.println(saveEmployees.getName());
-        System.out.println(saveEmployees.getEmail());
-        System.out.println(saveEmployees.getMobile());
-
         ApiResponse<EmployeePayload> response = new ApiResponse<>();
         response.setMessage("Data save successfully");
         response.setStatusCode(201);
@@ -36,22 +33,21 @@ public class EmployeeControllerApi {
     }
 
     @GetMapping("/getAllEmployee")
-    public ResponseEntity<ApiResponse<Employee>> getAllEmployee(){
+    public ResponseEntity<ApiResponse<List<Employee>>> getAllEmployee(){
 
-        Employee allReistration = employeeService.getAllReistration();
-        ApiResponse<Employee> response = new ApiResponse<>();
+        List<Employee> allReistration = employeeService.getAllReistration();
+        ApiResponse<List<Employee>> response = new ApiResponse<>();
 
         response.setStatusCode(200);
         response.setMessage("All employees ");
         response.setData(allReistration);
-        ResponseEntity<ApiResponse<Employee>> apiResponseResponseEntity = new ResponseEntity<>(response , HttpStatus.OK);
+        ResponseEntity<ApiResponse<List<Employee>>> apiResponseResponseEntity = new ResponseEntity<>(response , HttpStatus.OK);
         return apiResponseResponseEntity;
     }
 
     @GetMapping("/getEmployeeById/{id}")
     public ResponseEntity<ApiResponse<Employee>> getRegisterById(@PathVariable long id){
         Employee employeeResult = employeeService.getREgistrationById(id);
-
         ApiResponse<Employee> response = new ApiResponse<>();
         response.setMessage("Fatch Employee Data");
         response.setStatusCode(200);

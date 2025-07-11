@@ -38,18 +38,11 @@ public class EmployeeService {
 		return employeePayLoad;
 	}
 
-	public Employee getAllReistration() {
+	public List<Employee> getAllReistration() {
 
 		Employee employee = new Employee();
 		List<Employee> employees = employeeRepository.findAll();
-		for(Employee emp : employees){
-			employee.setId(emp.getId());
-			employee.setName(emp.getName());
-			employee.setEmail(emp.getEmail());
-			employee.setMobile(emp.getMobile());
-
-		}
-		return employee;
+		return employees;
 
 	}
 
