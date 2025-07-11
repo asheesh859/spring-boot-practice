@@ -49,15 +49,20 @@ public class EmployeeControllerApi {
     }
 
     @GetMapping("/getEmployeeById/{id}")
-    public void getRegisterById(@PathVariable long id){
+    public ResponseEntity<ApiResponse<Employee>> getRegisterById(@PathVariable long id){
+        Employee employeeResult = employeeService.getREgistrationById(id);
 
+        ApiResponse<Employee> response = new ApiResponse<>();
+        response.setMessage("Fatch Employee Data");
+        response.setStatusCode(200);
+        response.setData(employeeResult);
+        ResponseEntity<ApiResponse<Employee>> responseResponseEntity = new ResponseEntity<>(response , HttpStatus.OK);
+        return responseResponseEntity;
     }
 
     @DeleteMapping("/deleteEmployee/{id}")
     public ResponseEntity<ApiResponse<Employee>> deleteEmployeeById(@PathVariable long id){
-
         Employee employee = employeeService.deleteEmployeeById(id);
-
         ApiResponse<Employee> response = new ApiResponse<>();
         response.setMessage("this employee has been deleted");
         response.setStatusCode(200);
