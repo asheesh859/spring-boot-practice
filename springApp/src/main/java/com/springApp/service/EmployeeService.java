@@ -81,4 +81,10 @@ public class EmployeeService {
 
 	}
 
+	public Employee updateEmployeeData(EmployeePayload employeePayload) {
+		Employee emp = new Employee();
+		BeanUtils.copyProperties(employeePayload, emp);
+		Employee result = employeeRepository.save(emp);
+		return result;
+	}
 }

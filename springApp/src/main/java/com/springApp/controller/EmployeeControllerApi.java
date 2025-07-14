@@ -89,5 +89,22 @@ public class EmployeeControllerApi {
 
     }
 
+    @PutMapping("/updateEmployee")
+    public ResponseEntity<ApiResponse<Employee>> updateRecord(@RequestBody EmployeePayload employeePayload){
+        Employee updateEmployeeResult = employeeService.updateEmployeeData(employeePayload);
+
+        ApiResponse<Employee> response = new ApiResponse<>();
+        response.setStatusCode(200);
+        response.setMessage("Data has been updated..");
+        response.setData(updateEmployeeResult);
+
+        ResponseEntity<ApiResponse<Employee>> responseResponseEntity = new ResponseEntity<>(response , HttpStatus.OK);
+        return  responseResponseEntity;
+
+
+
+
+    }
+
 
 }
