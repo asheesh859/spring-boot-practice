@@ -33,11 +33,14 @@ public class EmployeeControllerApi {
     }
 
     @GetMapping("/getAllEmployee")
-    public ResponseEntity<ApiResponse<List<Employee>>> getAllEmployee(@RequestParam(value = "pageNo" , defaultValue = "0" , required = false) int pageNo ,
-                                                                      @RequestParam(value = "pageSize" , defaultValue = "5" , required = false) int pageSize
-                                                                      ){
+    public ResponseEntity<ApiResponse<List<Employee>>> getAllEmployee(
+            @RequestParam(value = "pageNo" , defaultValue = "0" , required = false) int pageNo ,
+            @RequestParam(value = "pageSize" , defaultValue = "5" , required = false) int pageSize,
+            @RequestParam(value = "sortBy" , defaultValue = "id" , required = false) String sortBy,
+            @RequestParam(value = "sortDir" , defaultValue = "asc" , required = false) String sortDir
+    ){
 
-        List<Employee> allReistration = employeeService.getAllReistration(pageNo , pageSize);
+        List<Employee> allReistration = employeeService.getAllReistration(pageNo , pageSize,sortBy,sortDir);
         ApiResponse<List<Employee>> response = new ApiResponse<>();
         response.setStatusCode(200);
         response.setMessage("All employees ");

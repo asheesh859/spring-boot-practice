@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -41,9 +42,11 @@ public class EmployeeService {
 		return employeePayLoad;
 	}
 
-	public List<Employee> getAllReistration(int pageNo , int pageSize) {
+	public List<Employee> getAllReistration(int pageNo , int pageSize , String sortBy , String sortDir) {
 
-		Pageable pageable = PageRequest.of(pageNo , pageSize);
+		Sort sort = sortDir.equalsIgnoreCase("asc")?Sort.by(Sort.Direction.ASC , sortBy):Sort.by(Sort.Direction.DESC , sortBy);
+
+		Pageable pageable = PageRequest.of(pageNo , pageSize,sort);
         Page<Employee> page = employeeRepository.findAll(pageable);
 		List<Employee> employees = page.getContent();
 		return employees;
