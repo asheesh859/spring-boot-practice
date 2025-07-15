@@ -12,6 +12,9 @@ import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -38,10 +41,11 @@ public class EmployeeService {
 		return employeePayLoad;
 	}
 
-	public List<Employee> getAllReistration() {
+	public List<Employee> getAllReistration(int pageNo , int pageSize) {
 
-		Employee employee = new Employee();
-		List<Employee> employees = employeeRepository.findAll();
+		Pageable pageable = PageRequest.of(pageNo , pageSize);
+        Page<Employee> page = employeeRepository.findAll(pageable);
+		List<Employee> employees = page.getContent();
 		return employees;
 
 	}
