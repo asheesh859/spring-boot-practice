@@ -47,8 +47,14 @@ public class EmployeeService {
 		Sort sort = sortDir.equalsIgnoreCase("asc")?Sort.by(Sort.Direction.ASC , sortBy):Sort.by(Sort.Direction.DESC , sortBy);
 
 		Pageable pageable = PageRequest.of(pageNo , pageSize,sort);
+		System.out.println(pageable.getPageNumber());
+		System.out.println(pageable.getPageSize());
+
+
         Page<Employee> page = employeeRepository.findAll(pageable);
 		List<Employee> employees = page.getContent();
+
+
 		return employees;
 
 	}
