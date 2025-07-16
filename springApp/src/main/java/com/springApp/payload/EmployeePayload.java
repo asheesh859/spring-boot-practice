@@ -1,13 +1,28 @@
 package com.springApp.payload;
 
+import jakarta.validation.constraints.*;
+
 public class EmployeePayload {
+
+
     private Long id;
+
+    @NotBlank(message = "Name is mandatory")
+    @Size(min=2 , message = "name at least 2 charactor")
     private String name;
+
+    @Email(message = "please enter valid email!")
     private String email;
+
+    @Size(min=10 , max =10 , message = "please enter 10 digit mobile")
     private String mobile;
     private String city;
     private String state;
     private String addressLine;
+
+    @NotNull
+    @Min(value = 100000, message = "Pincode must be at least 6 digits")
+    @Max(value = 999999, message = "Pincode must be at most 6 digits")
     private Long pincode;
 
     public Long getId() {

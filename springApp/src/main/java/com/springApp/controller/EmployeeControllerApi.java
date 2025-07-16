@@ -4,9 +4,11 @@ import com.springApp.entity.Employee;
 import com.springApp.payload.ApiResponse;
 import com.springApp.payload.EmployeePayload;
 import com.springApp.service.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,10 +22,12 @@ public class EmployeeControllerApi {
     private EmployeeService employeeService;
 
     @PostMapping("/add")
-    public ResponseEntity<ApiResponse<EmployeePayload>> registerEmployee(@RequestBody EmployeePayload employeePayload){
+    public ResponseEntity<ApiResponse<EmployeePayload>> registerEmployee(
+          @Valid @RequestBody EmployeePayload employeePayload , BindingResult result
 
-        EmployeePayload saveEmployees = employeeService.saveRegistration(employeePayload);
+    ){
         ApiResponse<EmployeePayload> response = new ApiResponse<>();
+        EmployeePayload saveEmployees = employeeService.saveRegistration(employeePayload);
         response.setMessage("Data save successfully");
         response.setStatusCode(201);
         response.setData(saveEmployees);
@@ -34,7 +38,7 @@ public class EmployeeControllerApi {
 
     @GetMapping("/getAllEmployee")
     public ResponseEntity<ApiResponse<List<Employee>>> getAllEmployee(
-            @RequestParam(value = "pageNo" , defaultValue = "0" , required = false) int pageNo ,
+            @RequestParam(value = "pageNo" , defaultValue = "0" , required = false) int pageNo  ,
             @RequestParam(value = "pageSize" , defaultValue = "5" , required = false) int pageSize,
             @RequestParam(value = "sortBy" , defaultValue = "id" , required = false) String sortBy,
             @RequestParam(value = "sortDir" , defaultValue = "asc" , required = false) String sortDir
@@ -112,4 +116,11 @@ public class EmployeeControllerApi {
     }
 
 
+    @PostMapping("/test")
+    public ResponseEntity<String> testValidation(@Valid @RequestBody EmployeePayload employeePayload , BindingResult result){
+        if(result.hasErrors()){
+             return new ResponseEntity<>(result.getFieldError().toString(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+      return new ResponseEntity<>("Created" , HttpStatus.CREATED);
+    }
 }
