@@ -86,11 +86,15 @@ public class EmployeeService {
 	}
 
 	public Employee getREgistrationById(long id) {
-		Optional<Employee> employee = employeeRepository.findById(id);
-		if(employee.isPresent()){
-			return employee.get();
-		}
-		return null;
+		Employee employee =  employeeRepository.findById(id).orElseThrow(
+				()-> {
+                    return new RuntimeException("Employee not found");
+                }
+		);
+//		if(employee.isPresent()){
+//			return employee.get();
+//		}
+		return employee;
 
 	}
 
