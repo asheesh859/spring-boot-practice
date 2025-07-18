@@ -58,27 +58,27 @@ public class EmployeeControllerApi {
     @GetMapping("/getEmployeeById/{id}")
     public ResponseEntity<ApiResponse<Employee>> getRegisterById(@PathVariable long id){
         ApiResponse<Employee> response = new ApiResponse<>();
-        try{
+
             Employee employeeResult = employeeService.getREgistrationById(id);
-            if(employeeResult!=null){
+        //    if(employeeResult!=null){
                 response.setMessage("Employee fetched successfully");
                 response.setStatusCode(200);
                 response.setData(employeeResult);
                 ResponseEntity<ApiResponse<Employee>> responseResponseEntity = new ResponseEntity<>(response , HttpStatus.OK);
                 return responseResponseEntity;
-            }
-            response.setMessage("employee does not exist!");
-            response.setStatusCode(400);
-            response.setData(employeeResult);
-            ResponseEntity<ApiResponse<Employee>> responseResponseEntity = new ResponseEntity<>(response , HttpStatus.NOT_FOUND);
-            return responseResponseEntity;
-        }catch (Exception e){
-            String message = e.getMessage();
-            response.setMessage(message);
-            response.setStatusCode(500);
-            ResponseEntity<ApiResponse<Employee>> responseResponseEntity = new ResponseEntity<>(response , HttpStatus.INTERNAL_SERVER_ERROR);
-            return responseResponseEntity;
-        }
+        //    }
+//            response.setMessage("employee does not exist!");
+//            response.setStatusCode(400);
+//            response.setData(employeeResult);
+//            ResponseEntity<ApiResponse<Employee>> responseResponseEntity = new ResponseEntity<>(response , HttpStatus.NOT_FOUND);
+//            return responseResponseEntity;
+//        }catch (Exception e){
+//            String message = e.getMessage();
+//            response.setMessage(message);
+//            response.setStatusCode(500);
+//            ResponseEntity<ApiResponse<Employee>> responseResponseEntity = new ResponseEntity<>(response , HttpStatus.INTERNAL_SERVER_ERROR);
+//            return responseResponseEntity;
+//        }
 
     }
 
